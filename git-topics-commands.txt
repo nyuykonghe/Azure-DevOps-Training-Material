@@ -1,0 +1,216 @@
+
+Version Controlling, Centralized vs Distributed
+----------------------------------------------
+
+Unlike a centralized version control system, a distributed version control doesn't have a single point of failure, because developers clone repositories on their distributed version control workstations, creating multiple backup copies.
+
+Download GIT from URL
+--------------------
+https://git-scm.com/download/win
+
+
+Add the ssh key to Github or Azure Repo
+---------------------------------------
+generate the ssh key
+
+ssh-keygen -->  go to .ssh directory path --> cat id_rsa.pub ---> copy the content --> go to settings of github account --> ssh key add --> paste your key and add
+
+Now, you should be able to authenticate with Github
+
+
+
+Config settings for the repo
+-----------------------------------------------------
+ 
+ git config --global user.name <name>
+ git config --global user.email <email id>
+ 
+ 
+ Add the remote repositories
+ ----------------------------
+ git remote -v
+ git remote add upstream 'URL'
+ 
+ to see more details of a commit
+ ---------------------------------
+ git show <commit ID>
+ 
+ 
+ 
+ Initiate the repo from the directory where you are starting your project
+ -------------------------------------------------------------------------
+
+
+ mkdir my_new_repo
+ cd my_new_repo
+ git init 
+
+ To check the status of the working directory
+ --------------------------------------------
+
+ git status
+
+ Add the files
+ -------------
+
+ git add . or git add <filename>
+
+ commit the files to local repository
+ ------------------------------------
+
+ git commit -m "description"
+
+compare the commits, branch changes, staged area changes
+--------------------------------------------------
+
+ git diff
+
+ git diff --staged
+
+ git diff HEAD
+
+ git log -p --follow -- filename 
+
+
+ git log -p --follow -- filename 
+
+ git diff <commit1-sha> <commit2-sha>  
+
+ git diff <branch 1> < branch 2>  
+
+ to revert the changes
+ ---------------------
+
+ git restore <filename>
+ git restore --staged <filename>
+
+add remote repos
+-----------------
+git remote add origin <https URL or SSH URL>
+
+to see the logs
+----------------
+git log
+git log --oneline
+git show <commit-hash>
+
+
+3.	Git SCM, Git Branching
+
+creation of branches and listing them
+-------------------------------------
+
+git branch <brnach name>
+
+example: 
+
+git branch dev1
+git branch dev2
+
+list branches
+------------------
+git branch --list
+
+delete branch
+---------------
+git branch --delete <branch-name>
+
+example:
+
+git branch --delete dev1
+
+to delete branch in remote repo
+---------------------------
+git push origin -d <branch name>
+
+example:
+
+git push origin -d dev1
+
+Branch Merge
+----------------
+git merge <branch-name> Note: Be in a branch to where you want to merge other branch
+
+example:
+
+git merge dev1
+
+git pull & push
+-------------------
+ git pull <origin-name>
+ 
+ git pull origin  Note: origin is the name of the remote URL which is configured
+ 
+ git push <origin-name>
+ 
+ git push origin 
+ 
+ git fetch <origin-name>
+ 
+ git fetch origin
+ 
+ when you fetch you need to merge those fetched changes manually
+ 
+ git checkout origin/master
+ 
+ check the files or modifications. If the modifications are okay, then go back to the master and merge them manually.
+ 
+ git checkout master
+ 
+ git merge origin/master
+ 
+ git rebase
+ ---------------
+ git rebase <branch name from where you want to rebase>
+ 
+ Stashing
+ ------------
+ stash stores the  staged changes into a packgae and stores in memory, when ever u want to pull remote changes and want to apply the un staged changes you can do this
+ git stash 
+
+Show list of stashes
+--------------------
+git stash list
+
+Now run git status you wont be seeing the untaged changes
+apply your stash packet
+
+git stash pop or you can use the id as well as shown below  ( pop is always latest stash)
+
+git stash apply stash@{0}
+
+-- This may lead to conflicts , resolve conflicts manually
+-- Once the conflict is resolved commit the chhanges
+
+-- Delete the stash packet
+git stash drop stash@{0}
+
+--check whether stash packets are deleted or not
+git stash list
+
+ 
+ 
+ ## Miscellaneous instructions
+
+Rename a file
+```
+git mv <old-file> <new-file>
+git commit -m "Renaming file"
+```
+
+Removing files (wildcards are also valid)
+```
+git rm <target-file>
+git commit -m "Removed target file"
+```
+
+Removing directories
+```
+git rm -r <folder>
+git commit -m "Removed directory 'folder_of_cats'"
+
+
+ 
+
+
+
